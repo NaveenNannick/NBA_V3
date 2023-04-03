@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- Primary Meta Tags -->
+    <title>
+        SFC {% block title %}{% endblock %}
+    </title>
+
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" integrity="sha512-ywEwUq3ApzJuz/i2+I9dASZfmLrqU7AebH6Y/2yCQ2y1wnU6VObc+I9oJNcwU6ysKnMyRN+RqwYMKmAxn1A+6w==" crossorigin="anonymous" />
+
+    <!-- Specific Page CSS goes HERE  -->
+    {% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+
+<body class="bg-soft">
+
+    <nav class="navbar is-dark is-hidden-desktop px-4">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img src="/static/assets/img/brand/light.svg" alt="Volt logo" />
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="sidebarMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="columns">
+        <div class="column is-2 is-hidden-mobile">
+            {% include 'includes/sidebar.html' %}
+        </div>
+        <div class="column">
+            {% block content %}{% endblock content %}
+        </div>
+    </div>
+
+    {% include 'includes/scripts.html' %}
+
+    <!-- Bulma JS -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/js/bulma.min.js" integrity="sha512-sW+D/q1gakxTZ/KSPU6O+R6/Z5U6e5O6etG+89lLZP8ghdQ2xJ0/m93y1vXyWYzouPtt0evJlM0vAJ8GZqlXYg==" crossorigin="anonymous"></script>
+
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %}
+
+</body>
+
+</html>

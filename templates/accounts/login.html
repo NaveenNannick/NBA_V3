@@ -1,0 +1,78 @@
+{% extends "base-fullscreen.html" %}
+
+{% block title %} Login {% endblock %} 
+
+{% block stylesheets %}
+    <!-- Specific Page CSS goes HERE  -->
+{% endblock %}
+
+{% block body_class %} bg-soft {% endblock %}
+
+{% block content %}
+
+    <main>
+
+        <!-- Section -->
+        <section class="hero is-fullheight is-flex is-align-items-center">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-10-tablet is-6-desktop is-5-widescreen">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="has-text-centered mb-4">
+                                    <h1 class="title mb-0">Sign IN</h1>
+                                    <p class="subtitle">
+                                        {% if msg %}
+                                            {{ msg | safe }}
+                                        {% else %}
+                                            Add your credentials
+                                        {% endif %}  
+                                    </p>  
+                                </div>
+                                <form method="post" action="" class="mt-4">
+                                    {% csrf_token %} 
+                                    <div class="field mb-4">
+                                        <label class="label" for="email">Username</label>
+                                        <div class="control has-icons-left">
+                                            <input class="input" type="text" placeholder="Username" name="username" required>
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-user-circle"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="field mb-4">
+                                        <label class="label" for="password">Your Password</label>
+                                        <div class="control has-icons-left">
+                                            <input class="input" type="password" placeholder="Password" name="password" required>
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-unlock-alt"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="level is-mobile">
+                                            <div class="level-left">
+                                                <div class="level-item">
+                                                    <p class="has-text-grey">
+                                                        <a href="{% url 'register' %}" class="mr-2">Register</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" name="login" class="button is-block is-primary is-fullwidth">Sign in</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock %}
+
+{% block javascripts %}
+    <!-- Specific Page JS goes HERE  -->
+{% endblock %}

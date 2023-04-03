@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>SFC{% block title %}{% endblock %}</title>
+  {% block stylesheets %}
+  {% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <img src="/static/assets/img/brand/light.svg" alt="Volt logo" width="112" height="28">
+      </a>
+
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <!-- navbar items go here -->
+      </div>
+
+      <div class="navbar-end">
+        <!-- navbar items go here -->
+      </div>
+    </div>
+  </nav>
+
+  <div class="container is-fluid">
+    <div class="columns">
+      <div class="column is-2">
+        {% include 'includes/sidebar.html' %}
+      </div>
+
+      <div class="column">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </div>
+
+  {% include 'includes/scripts.html' %}    
+    
+  {% block javascripts %}
+  {% endblock %}
+</body>
+</html>

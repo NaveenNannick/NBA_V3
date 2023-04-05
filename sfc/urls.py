@@ -30,6 +30,7 @@ urlpatterns = [
     path('profiles/', include("profiles.urls")),  # Django customers route
    # path("", include("app.urls")),  # UI Kits Html files
     path("", include("accounts.urls")),  # Auth routes - login / register
+    path("calc/",include("calc.urls"))
 ]
 """
 if settings.DEVEL:

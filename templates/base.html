@@ -1,54 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <!-- Primary Meta Tags -->
-    <title>
-        SFC {% block title %}{% endblock %}
-    </title>
+<!-- Primary Meta Tags -->
+<title>
+    SFC {% block title %}{% endblock %} 
+</title>
 
-    <!-- Bulma CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" integrity="sha512-ywEwUq3ApzJuz/i2+I9dASZfmLrqU7AebH6Y/2yCQ2y1wnU6VObc+I9oJNcwU6ysKnMyRN+RqwYMKmAxn1A+6w==" crossorigin="anonymous" />
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="120x120" href="/static/assets/img/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/assets/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/assets/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="/static/assets/img/favicon/site.webmanifest">
+<link rel="mask-icon" href="/static/assets/img/favicon/safari-pinned-tab.svg" color="#ffffff">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+<!-- Fontawesome -->
+<link type="text/css" href="/static/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+<!-- Notyf -->
+<link type="text/css" href="/static/assets/vendor/notyf/notyf.min.css" rel="stylesheet">
+
+<!-- Volt CSS -->
+<link type="text/css" href="/static/assets/css/volt.css" rel="stylesheet">
 
     <!-- Specific Page CSS goes HERE  -->
     {% block stylesheets %}{% endblock stylesheets %}
 
 </head>
 
-<body class="bg-soft">
+<body>
 
-    <nav class="navbar is-dark is-hidden-desktop px-4">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="/">
-                <img src="/static/assets/img/brand/light.svg" alt="Volt logo" />
-            </a>
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="sidebarMenu">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
+    <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-md-none">
+        <a class="navbar-brand mr-lg-5" href="/">
+            <img class="navbar-brand-dark" src="/static/assets/img/brand/light.svg" alt="Volt logo" /> <img class="navbar-brand-light" src="/static/assets/img/brand/dark.svg" alt="Volt logo" />
+        </a>
+        <div class="d-flex align-items-center">
+            <button class="navbar-toggler d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
     </nav>
 
-    <div class="columns">
-        <div class="column is-2 is-hidden-mobile">
-            {% include 'includes/sidebar.html' %}
-        </div>
-        <div class="column">
-            {% block content %}{% endblock content %}
+    <div class="container-fluid bg-soft">
+        <div class="row">
+            <div class="col-12">
+
+                {% include 'includes/sidebar.html' %}
+            
+                {% block content %}{% endblock content %}
+
+            </div>
         </div>
     </div>
 
-    {% include 'includes/scripts.html' %}
-
-    <!-- Bulma JS -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/js/bulma.min.js" integrity="sha512-sW+D/q1gakxTZ/KSPU6O+R6/Z5U6e5O6etG+89lLZP8ghdQ2xJ0/m93y1vXyWYzouPtt0evJlM0vAJ8GZqlXYg==" crossorigin="anonymous"></script>
-
+    {% include 'includes/scripts.html' %}    
+    
     <!-- Specific Page JS goes HERE  -->
     {% block javascripts %}{% endblock javascripts %}
 
 </body>
-
 </html>

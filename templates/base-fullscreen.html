@@ -1,53 +1,61 @@
+<!--
+
+=========================================================
+* Volt - Bootstrap 5 Admin Dashboard
+=========================================================
+
+* Product Page: https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard
+* Copyright 2020 Themesberg (https://www.themesberg.com)
+
+* Designed and coded by https://themesberg.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
+
+-->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>SFC{% block title %}{% endblock %}</title>
-  {% block stylesheets %}
-  {% endblock %}
-</head>
 
-<body class="{% block body_class %}{% endblock %}">
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="/">
-        <img src="/static/assets/img/brand/light.svg" alt="Volt logo" width="112" height="28">
-      </a>
+<!-- Primary Meta Tags -->
+<title>
+    SFC  {% block title %}{% endblock %} 
+</title>
 
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <!-- navbar items go here -->
-      </div>
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="120x120" href="/static/assets/img/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/assets/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/assets/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="/static/assets/img/favicon/site.webmanifest">
+<link rel="mask-icon" href="/static/assets/img/favicon/safari-pinned-tab.svg" color="#ffffff">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
 
-      <div class="navbar-end">
-        <!-- navbar items go here -->
-      </div>
-    </div>
-  </nav>
+<!-- Fontawesome -->
+<link type="text/css" href="/static/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 
-  <div class="container is-fluid">
-    <div class="columns">
-      <div class="column is-2">
-        {% include 'includes/sidebar.html' %}
-      </div>
+<!-- Notyf -->
+<link type="text/css" href="/static/assets/vendor/notyf/notyf.min.css" rel="stylesheet">
 
-      <div class="column">
-        {% block content %}{% endblock %}
-      </div>
-    </div>
-  </div>
+<!-- Volt CSS -->
+<link type="text/css" href="/static/assets/css/volt.css" rel="stylesheet">
 
-  {% include 'includes/scripts.html' %}    
+    <!-- Specific Page CSS goes HERE  -->
+    {% block stylesheets %}{% endblock stylesheets %}
+
+</head> 
+<body class="{% block body_class %}{% endblock body_class %}">
+           
+    {% block content %}{% endblock content %}
+
+    {% include 'includes/scripts.html' %}    
     
-  {% block javascripts %}
-  {% endblock %}
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %}
+
 </body>
 </html>

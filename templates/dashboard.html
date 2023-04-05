@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main class="content">
+
+        {% include 'includes/navigation.html' %}
+
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+           
+            
+        </div>
+        
+            <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                <div class="card border-light shadow-sm">
+                    <div class="card-body">
+                        <div class="row d-block d-xl-flex align-items-center">
+                            <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                                <div class="icon icon-shape icon-md icon-shape-blue rounded mr-4 mr-sm-0"><span class="fas fa-chart-line"></span></div>
+                                <div class="d-sm-none">
+                                    <h2 class="h5">Customers</h2>
+                                    <h3 class="mb-1">345,678</h3>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-7 px-xl-0">
+                                <div class="d-none d-sm-block">
+                                    <h2 class="h5">Customers</h2>
+                                    <h3 class="mb-1">345k</h3>
+                                </div>
+                                <small>Feb 1 - Apr 1,  <span class="icon icon-small"><span class="fas fa-globe-europe"></span></span> WorldWide</small> 
+                                <div class="small mt-2">                               
+                                    <span class="fas fa-angle-up text-success"></span>                                   
+                                    <span class="text-success font-weight-bold">18.2%</span> Since last month
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                <div class="card border-light shadow-sm">
+                    <div class="card-body">
+                        <div class="row d-block d-xl-flex align-items-center">
+                            <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                                <div class="icon icon-shape icon-md icon-shape-secondary rounded mr-4"><span class="fas fa-cash-register"></span></div>
+                                <div class="d-sm-none">
+                                    <h2 class="h5">Revenue</h2>
+                                    <h3 class="mb-1">$43,594</h3>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-7 px-xl-0">
+                                <div class="d-none d-sm-block">
+                                    <h2 class="h5">Revenue</h2>
+                                    <h3 class="mb-1">$43,594</h3>
+                                </div>
+                                <small>Feb 1 - Apr 1,  <span class="icon icon-small"><span class="fas fa-globe-europe"></span></span> Worldwide</small>
+                                <div class="small mt-2">                               
+                                    <span class="fas fa-angle-up text-success"></span>                                   
+                                    <span class="text-success font-weight-bold">28.2%</span> Since last month
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                <div class="card border-light shadow-sm">
+                    <div class="card-body">
+                        <div class="row d-block d-xl-flex align-items-center">
+                            
+                            <div class="col-12 col-xl-7 px-xl-0">
+                                <h4 class="h5 mb-3">Faculty Cadre Ratio</h4>
+                                <h1 class="">15/30</h1>
+                                <ul> {% for profile in profiles %}</ul>
+                                <li>{{ profile.tittle }}</li>
+                                {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

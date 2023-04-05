@@ -28,7 +28,6 @@ class Profile(models.Model):
     ]
 
     user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to="profiles/avatars/", null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
     gender = models.PositiveSmallIntegerField(choices=GENDER_CHOICES, null=True, blank=True)
     phone = models.CharField(max_length=32, null=True, blank=True)

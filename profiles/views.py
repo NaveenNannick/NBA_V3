@@ -35,6 +35,10 @@ class ProfileView(View):
             profile.phone = form.cleaned_data['phone']
             profile.institution = form.cleaned_data['institution']
             profile.department = form.cleaned_data['department']
+            profile.yearofjoining = form.cleaned_data['yearofjoining']
+            profile.phd = form.cleaned_data['phd']
+            profile.designation = form.cleaned_data['designation']
+            profile.qualifications = form.cleaned_data['qualifications']
             profile.save()
 
             messages.success(request, 'Profile saved successfully')

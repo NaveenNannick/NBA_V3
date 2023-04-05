@@ -49,6 +49,4 @@ class Profile(models.Model):
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
 
-    @property
-    def get_avatar(self):
-        return self.avatar.url if self.avatar else static('assets/img/team/default-profile-picture.png')
+    

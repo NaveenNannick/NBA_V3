@@ -87,7 +87,7 @@
                                 <div>
                                     <label for="institution">Institution</label>
                                     <input name="institution" class="form-control" id="institution" type="text"
-                                           placeholder="Enter your institution name" value="{{ profile.user.institution }}"
+                                           placeholder="Enter your institution name" value="{{ profile.institution }}"
                                            required>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                 <div>
                                     <label for="department">Department</label>
                                     <input name="department" class="form-control" id="department" type="text"
-                                           placeholder="Department name" value="{{ profile.user.department}}"
+                                           placeholder="Department name" value="{{ profile.department}}"
                                            required>
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
                                         <option selected>Designation</option>
                                         {% for key, value in profile.DESIGNATION_CHOICES %}
                                             <option value="{{ key }}"
-                                                    {% if profile.desgination == key %}selected{% endif %}>{{ value }}</option>
+                                                    {% if profile.designation == key %}selected{% endif %}>{{ value }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -140,7 +140,7 @@
                                 <div>
                                     <label for="qualifications">Qualification</label>
                                     <input name="qualifications" class="form-control" id="qualifications" type="text"
-                                           placeholder="Qualification name" value="{{ profile.user.qualifications}}"
+                                           placeholder="MCA\ME\MTECH...." value="{{ profile.qualifications}}"
                                            required>
                                 </div>
                             </div>

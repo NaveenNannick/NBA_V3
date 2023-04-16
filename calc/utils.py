@@ -1,3 +1,5 @@
+import math
+from operator import add
 
 def STR(a,b,c,N):
     sfr = (a + b + c) / N
@@ -53,6 +55,23 @@ def FR(exp,N):
     value54 = 3 * (rpi / N)
     return value54
 
-def Fp(tw,ow,N):
-    value55 = tw
+def FP(ow,tw,N):
+    ow = [i * 5 for i in ow]
+    tw = [i * 5 for i in tw]
+    ad =  list(map(add,ow,tw))
+    sm = []
+    for i in ad:
+        if i<=5:
+            sm.append(i)
+        elif i>5:
+            sm.append(5)
+    
+    value55=sum(sm)/N
+    value55 *= 3
     return value55
+
+def IWO(i1,N):
+    i1= [i for i in i1 if i is not None]
+    value56 = sum(i1)/N
+    value56 *= 2.0
+    return float (value56)

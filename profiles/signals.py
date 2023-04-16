@@ -10,3 +10,4 @@ def save_profile(sender, instance, created, **kwargs):
     if created:
         profile = Profile(user=instance)
         profile.save()
+

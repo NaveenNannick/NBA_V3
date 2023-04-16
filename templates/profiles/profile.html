@@ -162,6 +162,9 @@
                                 
                             </div>
                         </div>
+                        <div class="col-12 col-xl-8">
+                            <div class="card card-body bg-white border-light shadow-sm mb-4">
+                                
                         <h2 class="h5 my-4">Address</h2>
                         <div class="row">
                             <div class="col-sm-9 mb-3">
@@ -194,7 +197,114 @@
                                            value="{{ profile.zip|default:'' }}" required>
                                 </div>
                             </div>
+                            </div>
+                            </div>
                         </div>
+                        <div class="col-12 col-xl-8">
+                            <div class="card card-body bg-white border-light shadow-sm mb-4">
+                                <h2 class="h5 mb-4">Extra Activities</h2>
+                                <div class="row"></br>
+                                    <h3 class="h5 mb-3">Development Program</h3>
+                                    <div class-"col-mb-6 mb-3">
+                                        <div class="form-check form-switch">
+                                            <input name="oneweek" class="form-check-input" type="checkbox" id="oneweek" value="true" {% if profile.oneweek %}checked{% endif %}>
+                                            <label class="form-check-label" for="oneweek">One Week Program</label>
+                                          </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <div>
+                                            <label for="program_name01">Program Name</label>
+                                            <input name="program_name01" class="form-control" id="program_name01" type="text"
+                                                   placeholder="Enter the program name" value="{{profile.program_name01 }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="start_date01">Start Date</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><span class="far fa-calendar-alt"></span></span>
+                                            <input name="start_date01" data-datepicker="" class="form-control" id="start_date01"
+                                                   type="text" placeholder="dd/mm/yyyy" value="{{ profile.start_date01|date:'m/d/Y'|default:'' }}" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="end_date01">End Date</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><span class="far fa-calendar-alt"></span></span>
+                                            <input name="end_date01" data-datepicker="" class="form-control" id="end_date01"
+                                                   type="text" placeholder="dd/mm/yyyy" value="{{ profile.end_date01|date:'m/d/Y'|default:'' }}" >
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                    <div class-"col-mb-6 mb-3">
+                                        <div class="form-check form-switch">
+                                            <input name="twoweek" class="form-check-input" type="checkbox" id="twoweek" checked="True" value="true" {% if profile.twoweek %}checked{% endif %}>
+                                            <label class="form-check-label" for="twoweek">Two Weeks Program</label>
+                                          </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <div>
+                                            <label for="program_name02">Program Name</label>
+                                            <input name="program_name02" class="form-control" id="program_name02" type="text"
+                                                   placeholder="Enter the program name" value="{{profile.program_name02 }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="start_date01">Start Date</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><span class="far fa-calendar-alt"></span></span>
+                                            <input name="start_date02" data-datepicker="" class="form-control" id="start_date02"
+                                                   type="text" placeholder="dd/mm/yyyy" value="{{ profile.start_date02|date:'m/d/Y'|default:'' }}" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="end_date01">End Date</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><span class="far fa-calendar-alt"></span></span>
+                                            <input name="end_date02" data-datepicker="" class="form-control" id="end_date02"
+                                                   type="text" placeholder="dd/mm/yyyy" value="{{ profile.end_date02|date:'m/d/Y'|default:'' }}" ></br>
+                                        </div>
+                                    </div>
+                                </div></br>
+                                
+                            </br>
+                                <div class="row">
+                                    <h3 class="h5 mb-3">Interaction with outside world</h3>
+                                    <div class="col-md-6 mb-3">
+                                        <div>
+                                            <label for="interaction">Interaction with </label>
+                                            <select name="interaction" class="form-select mb-0" id="phd"
+                                                    aria-label="interaction select example">
+                                                <option selected>interaction</option>
+                                                {% for key, value in profile.INTERACTION_CHOICES %}
+                                                    <option value="{{ key }}"
+                                                            {% if profile.interaction == key %}selected{% endif %}>{{ value }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div>
+                                            <label for="iiname">Institution/Industry Name</label>
+                                            <input name="iiname" class="form-control" id="iiname" type="text"
+                                                   placeholder="Enter the institution/industry name" value="{{profile.iiname }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="iidate">Date</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><span class="far fa-calendar-alt"></span></span>
+                                            <input name="iidate" data-datepicker="" class="form-control" id="iidate"
+                                                   type="text" placeholder="dd/mm/yyyy" value="{{ profile.iidate|date:'m/d/Y'|default:'' }}" >
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                        
+                           
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">Save All</button>
                         </div>
@@ -206,8 +316,10 @@
                
 
     </main>
+    
 
 {% endblock content %}
-
+   
 <!-- Specific Page JS goes HERE  -->
+
 {% block javascripts %}{% endblock javascripts %}

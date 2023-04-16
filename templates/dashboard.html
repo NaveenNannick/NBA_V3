@@ -3,6 +3,7 @@
 {% block title %} Dashboard {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
+
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
@@ -65,8 +66,22 @@
                   <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
                     <div class="row d-block d-xl-flex align-items-center">
                       <div class="col-12 col-xl-7 px-xl-0">
-                        <h2 class="card-title text-center">Faculty Retention</h2>
+                        <h2 class="card-title text-center">&nbsp;Faculty Retention</h2>
                         <h1 class="text-success">{{ value54 }}/15</h1>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                <div class="card border-light shadow-sm">
+                  <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                    <div class="row d-block d-xl-flex align-items-center">
+                      <div class="col-12 col-xl-7 px-xl-0">
+                        <h2 class="card-title text-center">&nbsp;Faculty as a Participant</h2>
+                        <h1 class="text-success">{{ value55 }}/15</h1>
+                        
                       </div>
                     </div>
                   </div>
@@ -74,13 +89,22 @@
               </div>
               
           </section>
-         
-    
-
+          <link rel="stylesheet" href="/static/assets/css/chart.css">
+          <div class="semicircle-chart" data-percentage="75">
+            <div class="semicircle-chart__fill"></div>
+            <div class="semicircle-chart__mask"></div>
+            <span class="semicircle-chart__percentage">75%</span>
+          </div>
+          
+       
+        
 
     </main>
 
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
+
+  
+</script>
 {% block javascripts %}{% endblock javascripts %}

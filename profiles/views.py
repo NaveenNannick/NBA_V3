@@ -33,12 +33,27 @@ class ProfileView(View):
             profile.birthday = form.cleaned_data['birthday']
             profile.gender = form.cleaned_data['gender']
             profile.phone = form.cleaned_data['phone']
+           
             profile.institution = form.cleaned_data['institution']
             profile.department = form.cleaned_data['department']
             profile.yearofjoining = form.cleaned_data['yearofjoining']
             profile.phd = form.cleaned_data['phd']
             profile.designation = form.cleaned_data['designation']
             profile.qualifications = form.cleaned_data['qualifications']
+           
+            profile.oneweek = form.cleaned_data['oneweek']
+            profile.program_name01 = form.cleaned_data['program_name01']
+            profile.start_date01 = form.cleaned_data['start_date01']
+            profile.end_date01 = form.cleaned_data['end_date01']
+            profile.twoweek = form.cleaned_data['twoweek']
+            profile.program_name02 = form.cleaned_data['program_name02']
+            profile.start_date02 = form.cleaned_data['start_date02']
+            profile.end_date02 = form.cleaned_data['end_date02']
+            
+            profile.interaction = form.cleaned_data['interaction']
+            profile.iidate = form.cleaned_data['iidate']
+            profile.iiname = form.cleaned_data['iiname']
+
             profile.save()
 
             messages.success(request, 'Profile saved successfully')

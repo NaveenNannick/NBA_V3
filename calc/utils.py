@@ -52,3 +52,7 @@ def FR(exp,N):
     rpi = x1 + 2*x2 + 3*x3 + 4*x4 + 5*x5
     value54 = 3 * (rpi / N)
     return value54
+
+def Fp(tw,ow,N):
+    value55 = tw
+    return value55

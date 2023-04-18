@@ -47,6 +47,20 @@ def dashboard(request):
         value54 = FR(exp,N)
         value55 = FP(ow,tw,N)
         value56 = IWO(i1,N)
+        """ total =[]
+        total.append(value51)
+        total.append(value52)
+        total.append(value53)
+        total.append(value54)
+        total.append(value55)
+        total.append(value56)
+        """
+        total =value52+value53+value54+value55+value56
+        if value51 is None:
+              value51 = 0
+        else:
+              total+=value51
+        
         context ={
             'value51':value51,
             'value52':value52,
@@ -54,5 +68,6 @@ def dashboard(request):
             'value54':value54,
             'value55':value55,
             'value56':value56,
+            'total':total,
         }
         return render(request,'dashboard.html',context)

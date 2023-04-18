@@ -1,26 +1,6 @@
-/*
 
-=========================================================
-* Volt Pro - Premium Bootstrap 5 Dashboard
-=========================================================
-
-* Product Page: https://themesberg.com/product/admin-dashboard/volt-premium-bootstrap-5-dashboard
-* Copyright 2020 Themesberg (https://www.themesberg.com)
-
-* Designed and coded by https://themesberg.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal. Contact us if you want to remove it.
-
-*/
 @import url("https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700&display=swap");
-/*!
- * Bootstrap v5.0.0-alpha2 (https://getbootstrap.com/)
- * Copyright 2011-2020 The Bootstrap Authors
- * Copyright 2011-2020 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+
 :root {
     --bs-blue: #0948B3;
     --bs-indigo: #31316A;
@@ -41710,3 +41690,73 @@ article .h1, article .h2, article .h3, article .h4, article .h5, article .h6 {
 .simplebar-scrollbar::before {
     background-color: #131620;
 }
+
+canvas {
+    width: 300px;
+    height: 150px;
+}
+
+.margin {
+    margin: 25px;
+}
+
+.semi-donut {
+    --percentage: 0;
+    --fill: #FF3D00;
+    position: relative;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    overflow: hidden;
+    color: var(--fill);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.semi-donut:after {
+    content: '';
+    width: 300px;
+    height: 300px;
+    border: 50px solid;
+    border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) var(--fill) var(--fill);
+    position: absolute;
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    transform: rotate(calc(-90deg + var(--percentage) * 1.8deg));
+    animation: fillAnimation 1s ease-in;
+}
+
+@keyframes fillAnimation {
+    0% {
+        transform: rotate(-90deg);
+    }
+    100% {
+        transform: rotate(calc(-90deg + var(--percentage) * 1.8deg));
+    }
+}
+
+.chart-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    font-size: 22px;
+    font-weight: 600;
+    z-index: 1;
+  }
+  
+  .chart-text span {
+    color: white;
+  }
+  
+  
+  
+  
+  
+  

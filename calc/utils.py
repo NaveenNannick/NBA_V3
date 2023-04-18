@@ -2,6 +2,9 @@ import math
 from operator import add
 
 def STR(a,b,c,N):
+    a = a or 0
+    b = b or 0
+    c = c or 0
     sfr = (a + b + c) / N
     try:
         value51 = 20 * (20/sfr)
@@ -23,17 +26,23 @@ def STR(a,b,c,N):
         pass
 
 def FCR(x,y,z,N):
+    x = x or 0
+    y = y or 0
+    z = z or 0
     cri = (2.25*((2*x)+y+(0.5)*z)) / N
     cri = min(cri, 1.0)
     value52 = 20*cri
-    return value52
+    return float(value52)
 
 def FQ(p1,p2,N):
+    p1 = p1 or 0
+    p2 = p2 or 0
     fqi = ((10*p1) +(6*p2)) / N
     value53 = 3 * fqi
-    return value53
+    return float(value53)
 
 def FR(exp,N):
+    exp = exp or []
     x1, x2, x3, x4, x5 = 0, 0, 0, 0, 0
 
     for i in range(len(exp)):
@@ -53,11 +62,11 @@ def FR(exp,N):
 
     rpi = x1 + 2*x2 + 3*x3 + 4*x4 + 5*x5
     value54 = 3 * (rpi / N)
-    return value54
+    return float(value54)
 
 def FP(ow,tw,N):
-    ow = [i * 5 for i in ow]
-    tw = [i * 5 for i in tw]
+    ow = [i * 5 if i else 0 for i in ow]
+    tw = [i * 5 if i else 0 for i in tw]
     ad =  list(map(add,ow,tw))
     sm = []
     for i in ad:
@@ -68,10 +77,10 @@ def FP(ow,tw,N):
     
     value55=sum(sm)/N
     value55 *= 3
-    return value55
+    return float(value55)
 
 def IWO(i1,N):
     i1= [i for i in i1 if i is not None]
     value56 = sum(i1)/N
     value56 *= 2.0
-    return float (value56)
+    return float(value56)

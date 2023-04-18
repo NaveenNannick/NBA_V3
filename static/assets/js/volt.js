@@ -1,19 +1,3 @@
-/*
-
-=========================================================
-* Volt - Bootstrap 5 Admin Dashboard
-=========================================================
-
-* Product Page: https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard
-* Copyright 2020 Themesberg (https://www.themesberg.com)
-
-* Designed and coded by https://themesberg.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
-
-*/
 
 "use strict";
 const d = document;
@@ -26,6 +10,30 @@ d.addEventListener("DOMContentLoaded", function(event) {
         lg: 960,
         xl: 1140
     };
+
+    var interactionValue = {{ value56 }};
+    var interactionPercentage = (interactionValue / 10) * 100;
+  
+    var interactionChart = new Chart(document.getElementById('interactionChart'), {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [interactionPercentage, 100 - interactionPercentage],
+          backgroundColor: ['#FF3D00', '#1F2428']
+        }]
+      },
+      options: {
+        cutoutPercentage: 80,
+        rotation: -90,
+        circumference: 180,
+        tooltips: {
+          enabled: false
+        },
+        legend: {
+          display: false
+        }
+      }
+    });
 
     var preloader = d.querySelector('.preloader');
     if(preloader) {
@@ -162,7 +170,7 @@ d.addEventListener("DOMContentLoaded", function(event) {
     }
 
     //Chartist
-
+/*
     if(d.querySelector('.ct-chart-sales-value')) {
         //Chart 5
           new Chartist.Line('.ct-chart-sales-value', {
@@ -284,3 +292,4 @@ d.addEventListener("DOMContentLoaded", function(event) {
     }
 
 });
+*/

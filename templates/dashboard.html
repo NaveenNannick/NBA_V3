@@ -3,6 +3,7 @@
 {% block title %} Dashboard {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 {% block stylesheets %}{% endblock stylesheets %}
 
@@ -11,110 +12,308 @@
     <main class="content">
 
         {% include 'includes/navigation.html' %}
-        
+    </br></br>
         <section>
-            <div class="row">
-              <div class="col-12 col-md-6 col-xl-4 mb-4">
-                <div class="card border-light shadow-sm">
+          <div class=hero>
+            <h1>total pionts {{ total }} </h1>
+        </section></br></br>
+        <section>
+          <div class="row">  
+            <div class="col-md-4 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h2 class="card-title">Total score</h2>
+                  <canvas id="combinedChart" width="300" height="150"></canvas>
+                  <h1 class="text-success text-center">{{ total }}</h1>
+                </div>
+              </div>
+            </div>
+              <div class="col-md-4 mb-4">
+                <div class="card h-100">
                   <div class="card-body">
                     <h2 class="card-title">Student Teacher Ratio</h2>
-                    <form method="POST">
-                      {% csrf_token %}
-                      <label for="1sty">No of students in 1st year</label>
-                      <input name="1sty" class="form-control" id="1sty" type="text" placeholder="Enter no of students" value="" required>
-                      <label for="2ndy">No of students in 2nd year</label>
-                      <input name="2ndy" class="form-control" id="2ndy" type="text" placeholder="Enter no of students" value="" required>
-                      <label for="3rdy">No of students in 3rdy year</label>
-                      <input name="3rdy" class="form-control" id="3rdy" type="text" placeholder="Enter no of students" value="" required>
-                      <div class="mt-3">
-                        <button type="submit" class="btn btn-primary">Calculate</button>
-                      </div></br>
-                    </form> 
-                    {% if value51 %}
-                    <div class="text-center">
-                    <span id="value51"><h1 class="text-success">{{ value51 }}/20</h1></span>
-                    </div>
-                    {% endif %}
+                              <form method="POST">
+                                {% csrf_token %}
+                                <label for="1sty">No of students in 1st year</label>
+                                <input name="1sty" class="form-control" id="1sty" type="text" placeholder="Enter no of students" value="" required>
+                                <label for="2ndy">No of students in 2nd year</label>
+                                <input name="2ndy" class="form-control" id="2ndy" type="text" placeholder="Enter no of students" value="" required>
+                                <label for="3rdy">No of students in 3rdy year</label>
+                                <input name="3rdy" class="form-control" id="3rdy" type="text" placeholder="Enter no of students" value="" required>
+                                <div class="mt-3">
+                                  <button type="submit" class="btn btn-primary">Calculate</button>
+                                </div></br>
+                              </form> 
+                              {% if value51 %}
+                              <div class="text-center">
+                              <span id="value51"><h1 class="text-success text-center">{{ value51 }}/20</h1></span>
+                              
+                              </div>
+                              {% endif %}
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-md-6 col-xl-8 mb-4">
-                
-                  <div class="col-12 col-sm-6 col-xl-6 mb-4">
-                    <div class="card border-light shadow-sm">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
-                        <h2 class="card-title">Faculty Cadre ratio</h2>
-                        <h1 class="text-success">{{ value52 }}/20</h1>
-                      </div>
-                    </div>
+            </div>
+        </section>   
+        <section>
+          <div class="container-fluid">
+            <div class="row">  
+              <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h2 class="card-title">Student Teacher ratio</h2>
+                    
+                    <canvas id="STChart" width="100" height="50"></canvas>
+                    <h1 class="text-success text-center">{{ value51 }}/20</h1>
                   </div>
-                  
-                  <div class="col-12 col-sm-6 col-xl-6 mb-4">
-                    <div class="card border-light shadow-sm">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
-                        <h2 class="card-title">Faculty Qualification</h2>
-                        <h1 class="text-success">{{ value53 }}/30</h1>
-                      </div>
-                    </div>
-                  </div>
-                
+                </div>
               </div>
               
-            <div class=row> 
-              <div class="col-12 col-sm-6 col-xl-4 mb-4">
-                  <div class="card border-light shadow-sm">
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
-                      <div class="row d-block d-xl-flex align-items-center">
-                        <div class="col-12 col-xl-7 px-xl-0">
-                          <h2 class="card-title text-center">&nbsp;Faculty Retention</h2>
-                          <h1 class="text-success">{{ value54 }}/15</h1>
-                          
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-sm-6 col-xl-4 mb-4">
-                  <div class="card border-light shadow-sm">
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
-                      <div class="row d-block d-xl-flex align-items-center">
-                        <div class="col-12 col-xl-7 px-xl-0">
-                          <h2 class="card-title text-center">&nbsp;Faculty as a Participant</h2>
-                          <h1 class="text-success">{{ value55 }}/15</h1>
-                          
-                        </div>
-                      </div>
-                    </div>
+              <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h2 class="card-title">Faculty Cadre ratio</h2>
+                    <canvas id="FCChart" width="100" height="50"></canvas>
+                    <h1 class="text-success text-center">{{ value52 }}/20</h1>
+                    
                   </div>
                 </div>
               </div>
-                <div class="col-12 col-sm-6 col-xl-4 mb-4">
-                  <div class="card border-light shadow-sm">
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
-                      <div class="row d-block d-xl-flex align-items-center">
-                        <div class="col-12 col-xl-7 px-xl-0">
-                          <h2 class="card-title text-center">&nbsp;Interaction with Outside World</h2>
-                          <h1 class="text-success">{{ value56}}/10</h1>
-                          
-                        </div>
-                      </div>
-                    </div>
+              <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h2 class="card-title">Faculty Qualification</h2>
+                    <canvas id="FQChart" width="150" height="75"></canvas>
+                    <h1 class="text-success text-center">{{ value53 }}/30</h1>
                   </div>
                 </div>
               </div>
-            
+
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h2 class="card-title text-center">&nbsp;Faculty Retention</h2>
+                    <canvas id="FRChart" width="150" height="75"></canvas>
+                    <h1 class="text-success text-center">{{ value54 }}/15</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h2 class="card-title text-center">&nbsp;Faculty as a Participant</h2>
+                    <canvas id="FPChart" width="150" height="75"></canvas>
+                    <h1 class="text-success text-center">{{ value55 }}/15</h1>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h2 class="card-title text-center">&nbsp;Interaction with Outside World</h2>
+                    <canvas id="interactionChart" width="150" height="75"></canvas>  
+                    <h1 class="text-success text-center">{{ value56}}/10</h1>              
+                  </div>
+                </div>
+              </div>
+            </div>
               
-          </section>
-          <link rel="stylesheet" href="/static/assets/css/chart.css">
-          <div class="semicircle-chart" data-percentage="75">
-            <div class="semicircle-chart__fill"></div>
-            <div class="semicircle-chart__mask"></div>
-            <span class="semicircle-chart__percentage">75%</span>
           </div>
+        </div>
           
-       
+        </section>
         
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+  var STValue = {{ value51 }};
+  var STPercentage = (STValue / 20) * 100;
+
+  var FCChart = new Chart(document.getElementById('STChart'), {
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [STPercentage, 100 - STPercentage],
+        backgroundColor: ['#FF3D00', '#1F2428']
+      }]
+    },
+    options: {
+      cutoutPercentage: 80,
+      rotation: -90,
+      circumference: 180,
+      tooltips: {
+        enabled: false
+      },
+      legend: {
+        display: false
+      }
+    }
+  });
+
+
+  var FCValue = {{ value52 }};
+  var FCPercentage = (FCValue / 20) * 100;
+
+  var FCChart = new Chart(document.getElementById('FCChart'), {
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [FCPercentage, 100 - FCPercentage],
+        backgroundColor: ['#FF3D00', '#1F2428']
+      }]
+    },
+    options: {
+      cutoutPercentage: 80,
+      rotation: -90,
+      circumference: 180,
+      tooltips: {
+        enabled: false
+      },
+      legend: {
+        display: false
+      }
+    }
+  });
+
+  var FQValue = {{ value53 }};
+  var FQPercentage = (FQValue / 30) * 100;
+
+  var FQChart = new Chart(document.getElementById('FQChart'), {
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [FQPercentage, 100 - FQPercentage],
+        backgroundColor: ['#FF3D00', '#1F2428']
+      }]
+    },
+    options: {
+      cutoutPercentage: 80,
+      rotation: -90,
+      circumference: 180,
+      tooltips: {
+        enabled: false
+      },
+      legend: {
+        display: false
+      }
+    }
+  });
+
+  var FRValue = {{ value54 }};
+  var FRPercentage = (FRValue / 15) * 100;
+
+  var FRChart = new Chart(document.getElementById('FRChart'), {
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [FRPercentage, 100 - FRPercentage],
+        backgroundColor: ['#FF3D00', '#1F2428']
+      }]
+    },
+    options: {
+      cutoutPercentage: 80,
+      rotation: -90,
+      circumference: 180,
+      tooltips: {
+        enabled: false
+      },
+      legend: {
+        display: false
+      }
+    }
+  });
+
+  var FPValue = {{ value55 }};
+  var FPPercentage = (FPValue / 15) * 100;
+
+  var FPChart = new Chart(document.getElementById('FPChart'), {
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [FPPercentage, 100 - FPPercentage],
+        backgroundColor: ['#FF3D00', '#1F2428']
+      }]
+    },
+    options: {
+      cutoutPercentage: 80,
+      rotation: -90,
+      circumference: 180,
+      tooltips: {
+        enabled: false
+      },
+      legend: {
+        display: false
+      }
+    }
+  });
+
+  var interactionValue = {{ value56 }};
+  var interactionPercentage = (interactionValue / 10) * 100;
+
+  var interactionChart = new Chart(document.getElementById('interactionChart'), {
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [interactionPercentage, 100 - interactionPercentage],
+        backgroundColor: ['#FF3D00', '#1F2428']
+      }]
+    },
+    options: {
+      cutoutPercentage: 80,
+      rotation: -90,
+      circumference: 180,
+      tooltips: {
+        enabled: false
+      },
+      legend: {
+        display: false
+      }
+    }
+  });
+
+  var STValue = {{ value51 }};
+  var FCValue = {{ value52 }};
+  var FQValue = {{ value53 }};
+  var FRValue = {{ value54 }};
+  var FPValue = {{ value55 }};
+  var interactionValue = {{ value56 }};
+
+  var STPercentage = (STValue / 20) * 100;
+  var FCPercentage = (FCValue / 20) * 100;
+  var FQPercentage = (FQValue / 30) * 100;
+  var FRPercentage = (FRValue / 15) * 100;
+  var FPPercentage = (FPValue / 15) * 100;
+  var interactionPercentage = (interactionValue / 10) * 100;
+
+  var combinedChart = new Chart(document.getElementById('combinedChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Student Teacher', 'Faculty Cadre', 'Faculty Qualification', 'Faculty Retention', 'Faculty as Participant', 'Faculty Interaction'],
+      datasets: [{
+        data: [STPercentage, FCPercentage, FQPercentage, FRPercentage, FPPercentage, interactionPercentage],
+        backgroundColor: ['#FF3D00', '#FFA500', '#FFFF00', '#008000', '#0000FF', '#800080']
+      }]
+    },
+    options: {
+      cutoutPercentage: 80,
+      rotation: -90,
+      circumference: 180,
+      tooltips: {
+        enabled: false
+      },
+      legend: {
+        display: true,
+        position: 'bottom'
+      }
+    }
+  });
+</script>
+
+          
     </main>
 
 {% endblock content %}
@@ -122,5 +321,5 @@
 <!-- Specific Page JS goes HERE  -->
 
   
-</script>
+
 {% block javascripts %}{% endblock javascripts %}

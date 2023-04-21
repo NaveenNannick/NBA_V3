@@ -2,16 +2,23 @@
 
 {% block title %} Login {% endblock %} 
 
-<!-- Specific Page CSS goes HERE  -->
+
 {% block stylesheets %}{% endblock stylesheets %}
 
-{% block body_class %} bg-soft {% endblock body_class %}
+{% block body_class %} <div
+  class="bg-image"
+  style="
+    background-image: url('https://img.freepik.com/free-vector/abstract-pastel-futuristic-texture-background_53876-115746.jpg?w=1060&t=st=1681960263~exp=1681960863~hmac=064176f97c0e431dfc01213fbfaad7d2077a4b586e8d714d4251dbfa93dabe52');
+    background-size: cover;
+  "
+></div> {% endblock body_class %}
 
 {% block content %}
 
     <main>
+        
 
-        <!-- Section -->
+        
         <section class="vh-lg-100 d-flex align-items-center">
             <div class="container">
                 <div class="row justify-content-center form-bg-image" data-background="/static/assets/img/illustrations/signin.svg">
@@ -34,7 +41,7 @@
                                 
                                 {% csrf_token %} 
 
-                                <!-- Form -->
+                                
                                 <div class="form-group mb-4">
                                     <label for="email">Username</label>
                                     <div class="input-group">
@@ -42,9 +49,9 @@
                                         {{ form.username }}
                                     </div>  
                                 </div>
-                                <!-- End of Form -->
+                                
                                 <div class="form-group">
-                                    <!-- Form -->
+                                    
                                     <div class="form-group mb-4">
                                         <label for="password">Your Password</label>
                                         <div class="input-group">
@@ -52,7 +59,7 @@
                                             {{ form.password }}
                                         </div>  
                                     </div>
-                                    <!-- End of Form -->
+                                    
 
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                        
@@ -75,5 +82,5 @@
 
 {% endblock content %}
 
-<!-- Specific Page JS goes HERE  -->
+
 {% block javascripts %}{% endblock javascripts %}

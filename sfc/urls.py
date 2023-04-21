@@ -12,29 +12,16 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-
-from django.contrib import admin
-from django.urls import path
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-]
 """
 from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
-from django.urls import path, include  # add this
+from django.urls import path, include  
 
 urlpatterns = [
-    path('admin/', admin.site.urls),  # Django admin route
-    path('profiles/', include("profiles.urls")),  # Django customers route
-   # path("", include("app.urls")),  # UI Kits Html files
-    path("", include("accounts.urls")),  # Auth routes - login / register
+    path('admin/', admin.site.urls), 
+    path('profiles/', include("profiles.urls")), 
+    path("", include("accounts.urls")), 
     path("calc/",include("calc.urls")),
     path('__debug__/', include('debug_toolbar.urls')),
 ]
-"""
-if settings.DEVEL:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-"""

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %} Settings {% endblock %}
+{% block title %} Profile {% endblock %}
 
-<!-- Specific Page CSS goes HERE  -->
+
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
@@ -139,9 +139,14 @@
                             <div class="col-md-6 mb-3">
                                 <div>
                                     <label for="qualifications">Qualification</label>
-                                    <input name="qualifications" class="form-control" id="qualifications" type="text"
-                                           placeholder="MCA\ME\MTECH...." value="{{ profile.qualifications}}"
-                                           required>
+                                    <select name="qualifications" class="form-select mb-0" id="qualifications"
+                                            aria-label="qualifications select example">
+                                        <option selected>Qualifications</option>
+                                        {% for key, value in profile.QUALIFICATIONS_CHOICES %}
+                                            <option value="{{ key }}"
+                                                    {% if profile.qualifications == key %}selected{% endif %}>{{ value }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </div>
                             </div>
                             </div>
@@ -159,9 +164,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <div class="col-10 mb-4">
+                                    <div class="card border-light text-center p-0">
+                                        <h2 class="h5 my-4">Publications</h2>
+                                    </div>
                             </div>
                         </div>
+                    </div>
+                        <div class =row>
                         <div class="col-12 col-xl-8">
                             <div class="card card-body bg-white border-light shadow-sm mb-4">
                                 
@@ -211,7 +221,7 @@
                                             <label class="form-check-label" for="oneweek">One Week Program</label>
                                           </div>
                                     </div>
-                                    
+                                    <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <div>
                                             <label for="program_name01">Program Name</label>
@@ -234,8 +244,17 @@
                                             <input name="end_date01" data-datepicker="" class="form-control" id="end_date01"
                                                    type="text" placeholder="dd/mm/yyyy" value="{{ profile.end_date01|date:'m/d/Y'|default:'' }}" >
                                         </div>
+
                                     </div>
-                                    
+
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <label for="location1">Location</label>
+                                            <input name="location1" class="form-control" id="location1" type="text"
+                                                placeholder="Enter the location" value="{{ profile.location1|default:'' }}" required>
+                                        </div>
+                                    </div>
+                                </div>
                                     
                                     
                                     <div class-"col-mb-6 mb-3">
@@ -244,7 +263,7 @@
                                             <label class="form-check-label" for="twoweek">Two Weeks Program</label>
                                           </div>
                                     </div>
-                                    
+                                    <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <div>
                                             <label for="program_name02">Program Name</label>
@@ -268,7 +287,16 @@
                                                    type="text" placeholder="dd/mm/yyyy" value="{{ profile.end_date02|date:'m/d/Y'|default:'' }}" ></br>
                                         </div>
                                     </div>
-                                </div></br>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="location2">Location</label>
+                                        <input name="location2" class="form-control" id="location2" type="text"
+                                            placeholder="Enter the location" value="{{ profile.location2|default:'' }}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            </div></br>
                                 
                             </br>
                                 <div class="row">
@@ -301,6 +329,13 @@
                                                    type="text" placeholder="dd/mm/yyyy" value="{{ profile.iidate|date:'m/d/Y'|default:'' }}" >
                                         </div>
                                     </div>
+                                    <div class="col-md-6 mb-3">
+                                        
+                                            <label for="iiPlace">Place</label>
+                                            <input name="iiplace" class="form-control" id="iiplace" type="text"
+                                                placeholder="place" value="{{ profile.iiplace|default:'' }}" required>
+                                        
+                                    </div>
                                 </div>
                                     
                         
@@ -320,6 +355,6 @@
 
 {% endblock content %}
    
-<!-- Specific Page JS goes HERE  -->
+
 
 {% block javascripts %}{% endblock javascripts %}

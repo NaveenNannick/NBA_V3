@@ -32,37 +32,42 @@ def FCR(x,y,z,N):
     cri = (2.25*((2*x)+y+(0.5)*z)) / N
     cri = min(cri, 1.0)
     value52 = 20*cri
-    return float(value52)
+    return [float(value52),float(cri)]
 
 def FQ(p1,p2,N):
     p1 = p1 or 0
     p2 = p2 or 0
     fqi = ((10*p1) +(6*p2)) / N
     value53 = 3 * fqi
-    return float(value53)
+    return [float(value53),float(fqi)]
 
-def FR(exp,N):
-    exp = exp or []
+def FR(exp, N):
+    if exp is None:
+        exp = []
     x1, x2, x3, x4, x5 = 0, 0, 0, 0, 0
 
     for i in range(len(exp)):
         x = exp[i]
-        if x == 1:
-            x1 += 1
-        elif x == 2:
-            x2 += 1
-        elif x == 3:
-            x3 += 1
-        elif x == 4:
-            x4 += 1
-        elif x >= 5:
-            x5 += 1
-        else:
-            pass
+        if x is not None:
+            if x == 1:
+                x1 += 1
+            elif x == 2:
+                x2 += 1
+            elif x == 3:
+                x3 += 1
+            elif x == 4:
+                x4 += 1
+            elif x >= 5:
+                x5 += 1
+            else:
+                pass
 
-    rpi = x1 + 2*x2 + 3*x3 + 4*x4 + 5*x5
+    rpi = x1 + 2 * x2 + 3 * x3 + 4 * x4 + 5 * x5
     value54 = 3 * (rpi / N)
-    return float(value54)
+    return [float(value54), float(rpi)]
+
+
+
 
 def FP(ow,tw,N):
     ow = [i * 5 if i else 0 for i in ow]
@@ -75,12 +80,20 @@ def FP(ow,tw,N):
         elif i>5:
             sm.append(5)
     
-    value55=sum(sm)/N
-    value55 *= 3
-    return float(value55)
+    FPS=sum(sm)/N
+    value55 = 3 * FPS
+    return [float(value55),float(FPS)]
 
 def IWO(i1,N):
     i1= [i for i in i1 if i is not None]
-    value56 = sum(i1)/N
-    value56 *= 2.0
-    return float(value56)
+    iws = sum(i1)/N
+    value56 = 2.0 * iws
+    return [float(value56),float(iws)]
+
+
+def STRA(a,b,c,N):
+    a = a or 0
+    b = b or 0
+    c = c or 0
+    sfr = (a + b + c) / N
+    return[float(sfr)]

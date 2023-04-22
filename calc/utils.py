@@ -32,14 +32,14 @@ def FCR(x,y,z,N):
     cri = (2.25*((2*x)+y+(0.5)*z)) / N
     cri = min(cri, 1.0)
     value52 = 20*cri
-    return [float(value52),float(cri)]
+    return float(value52)
 
 def FQ(p1,p2,N):
     p1 = p1 or 0
     p2 = p2 or 0
     fqi = ((10*p1) +(6*p2)) / N
     value53 = 3 * fqi
-    return [float(value53),float(fqi)]
+    return float(value53)
 
 def FR(exp, N):
     if exp is None:
@@ -64,7 +64,7 @@ def FR(exp, N):
 
     rpi = x1 + 2 * x2 + 3 * x3 + 4 * x4 + 5 * x5
     value54 = 3 * (rpi / N)
-    return [float(value54), float(rpi)]
+    return float(value54)
 
 
 
@@ -82,18 +82,12 @@ def FP(ow,tw,N):
     
     FPS=sum(sm)/N
     value55 = 3 * FPS
-    return [float(value55),float(FPS)]
+    return float(value55)
 
 def IWO(i1,N):
     i1= [i for i in i1 if i is not None]
     iws = sum(i1)/N
     value56 = 2.0 * iws
-    return [float(value56),float(iws)]
+    return float(value56)
 
 
-def STRA(a,b,c,N):
-    a = a or 0
-    b = b or 0
-    c = c or 0
-    sfr = (a + b + c) / N
-    return[float(sfr)]

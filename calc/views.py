@@ -3,9 +3,10 @@ from django.shortcuts import render,redirect
 from django.db.models.functions import ExtractYear
 from django.db.models import F
 from datetime import date
+from django.utils import timezone
 from django.contrib import messages
 from calc.models import CAY
-from .utils import STR, FCR, FQ, FR, FP, IWO, STRA
+from .utils import STR, FCR, FQ, FR, FP, IWO
 from profiles.models import Profile
 
 
@@ -31,6 +32,19 @@ tw = [float(p.twoweek) for p in Profile.objects.all()]
 
 i1 = Profile.objects.values_list('interaction',flat=True)
 
+current_year1 = timezone.now().year
+one_year_ago = current_year1 - 1
+two_years_ago = current_year1 - 2
+
+cay_queryset0 = CAY.objects.filter(year__year=current_year1)
+cay_queryset1 = CAY.objects.filter(year__year=one_year_ago)
+cay_queryset2 = CAY.objects.filter(year__year=two_years_ago)
+
+cl0 = list(cay_queryset0.values_list('STR', 'FCR', 'FQ', 'FR', 'FP', 'IWO'))
+cl1 = list(cay_queryset1.values_list('STR', 'FCR', 'FQ', 'FR', 'FP', 'IWO'))
+cl2 = list(cay_queryset2.values_list('STR', 'FCR', 'FQ', 'FR', 'FP', 'IWO'))
+
+
 
 def dashboard(request):
         a, b, c = 0, 0, 0 
@@ -46,19 +60,28 @@ def dashboard(request):
         value54 = FR(exp,N)
         value55 = FP(ow,tw,N)
         value56 = IWO(i1,N)
-        total =value52[0]+value53[0]+value54[0]+value55[0]+value56[0]
+
+        value52 = round(((value52+cl1[0][1]+cl2[0][1])/3),2)
+        value53 = round(((value53+cl1[0][2]+cl2[0][2])/3),2)
+        value54 = round(((value54+cl1[0][3]+cl2[0][3])/3),2)
+        value55 = round(((value55+cl1[0][4]+cl2[0][4])/3),2)
+        value56 = round(((value56+cl1[0][5]+cl2[0][5])/3),2)
+
+
+        total =value52+value53+value54+value55+value56
         if value51 is None:
               value51 = 0
         else:
+              value51 =round(((value51+cl1[0][0]+cl2[0][0])/3),2)
               total+=value51
-        
+        total = round(total,2)
         context ={
             'value51':value51,
-            'value52':value52[0],
-            'value53':value53[0],
-            'value54':value54[0],
-            'value55':value55[0],
-            'value56':value56[0],
+            'value52':value52,
+            'value53':value53,
+            'value54':value54,
+            'value55':value55,
+            'value56':value56,
             'total':total,
         }
         return render(request,'dashboard.html',context)
@@ -75,29 +98,29 @@ def Avg(request):
         b = float(request.POST.get('2y'))
         c = float(request.POST.get('3y'))
 
-    ca51 = STRA(a,b,c,N)
+    ca51 = STR(a,b,c,N)
     ca52 = FCR(x,y,z,N)
     ca53 = FQ(p1,p2,N)
     ca54 = FR(exp,N)
     ca55 = FP(ow,tw,N)
     ca56 = IWO(i1,N)
     print("Values:", ca51, ca52, ca53, ca54, ca55, ca56)
-    
-    
+    print(cl1[0][2])
+    print(cl2)
     cay_instance = CAY.objects.first()
     year_value = cay_instance.year.year if cay_instance else None
     if year_value and year_value == date.today().year:
         cay_instance.year = date.today()
-        cay_instance.STR = ca51[0]
-        cay_instance.FCR = ca52[1]
-        cay_instance.FQ = ca53[1]
-        cay_instance.FR = ca54[1]
-        cay_instance.FP = ca55[1]
-        cay_instance.IWO = ca56[1]
+        cay_instance.STR = ca51
+        cay_instance.FCR = ca52
+        cay_instance.FQ = ca53
+        cay_instance.FR = ca54
+        cay_instance.FP = ca55
+        cay_instance.IWO = ca56
         cay_instance.save()
         messages.success(request, 'Data updated successfully.')
     else:
-        cay_instance = CAY(year=date.today(), STR=ca51[0], FCR=ca52[1], FQ=ca53[1], FR=ca54[1], FP=ca55[1], IWO=ca56[1])
+        cay_instance = CAY(year=date.today(), STR=ca51, FCR=ca52[0], FQ=ca53[0], FR=ca54[0], FP=ca55[0], IWO=ca56[0])
         cay_instance.save()
         messages.success(request, 'Data saved successfully.')
         
@@ -108,6 +131,7 @@ def Avg(request):
         'ca54': ca54,
         'ca55': ca55,
         'ca56': ca56,
+        
     }
     
     return render(request, 'avgcay.html',context)

@@ -1,12 +1,11 @@
 import math
 from operator import add
-
 def STR(a,b,c,N):
     a = a or 0
     b = b or 0
     c = c or 0
-    sfr = (a + b + c) / N
     try:
+        sfr = (a + b + c) / N
         value51 = 20 * (20/sfr)
         if value51 <= 15:
             return 20
@@ -25,21 +24,30 @@ def STR(a,b,c,N):
     except ZeroDivisionError:
         pass
 
+
 def FCR(x,y,z,N):
     x = x or 0
     y = y or 0
     z = z or 0
-    cri = (2.25*((2*x)+y+(0.5)*z)) / N
-    cri = min(cri, 1.0)
-    value52 = 20*cri
-    return float(value52)
+    try:
+        cri = (2.25*((2*x)+y+(0.5)*z)) / N
+        cri = min(cri, 1.0)
+        value52 = 20*cri
+        return float(value52)
+    except ZeroDivisionError:
+        pass
+
 
 def FQ(p1,p2,N):
     p1 = p1 or 0
     p2 = p2 or 0
-    fqi = ((10*p1) +(6*p2)) / N
-    value53 = 3 * fqi
-    return float(value53)
+    try:
+        fqi = ((10*p1) +(6*p2)) / N
+        value53 = 3 * fqi
+        return float(value53)
+    except ZeroDivisionError:
+        pass
+
 
 def FR(exp, N):
     if exp is None:
@@ -62,11 +70,12 @@ def FR(exp, N):
             else:
                 pass
 
-    rpi = x1 + 2 * x2 + 3 * x3 + 4 * x4 + 5 * x5
-    value54 = 3 * (rpi / N)
-    return float(value54)
-
-
+    try:
+        rpi = x1 + 2 * x2 + 3 * x3 + 4 * x4 + 5 * x5
+        value54 = 3 * (rpi / N)
+        return float(value54)
+    except ZeroDivisionError:
+        pass
 
 
 def FP(ow,tw,N):
@@ -80,14 +89,19 @@ def FP(ow,tw,N):
         elif i>5:
             sm.append(5)
     
-    FPS=sum(sm)/N
-    value55 = 3 * FPS
-    return float(value55)
+    try:
+        FPS=sum(sm)/N
+        value55 = 3 * FPS
+        return float(value55)
+    except ZeroDivisionError:
+        pass
+
 
 def IWO(i1,N):
     i1= [i for i in i1 if i is not None]
-    iws = sum(i1)/N
-    value56 = 2.0 * iws
-    return float(value56)
-
-
+    try:
+        iws = sum(i1)/N
+        value56 = 2.0 * iws
+        return float(value56)
+    except ZeroDivisionError:
+        pass

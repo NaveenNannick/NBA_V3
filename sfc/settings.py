@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "debug_toolbar",
     'accounts',
     'profiles',
-    'app',
     'calc',
 ]
 
@@ -140,3 +139,4 @@ INTERNAL_IPS = [
     # ...
 ]
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+

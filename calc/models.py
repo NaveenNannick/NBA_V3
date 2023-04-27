@@ -8,6 +8,8 @@ class CAY(models.Model):
     FR = models.FloatField(null=True,blank=True)
     FP = models.FloatField(null=True,blank=True)
     IWO = models.FloatField(null=True,blank=True)
+    FRP = models.FloatField(null=True,blank=True)
+    TOTAL = models.FloatField(null=True,blank=True)
 
     @property
     def year_value(self):

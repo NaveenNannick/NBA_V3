@@ -25,7 +25,7 @@
                 <div class="card-body">
                   <h2 class="card-title text-center">Total score</h2>
                   <canvas id="combinedChart" width="300" height="150"></canvas>
-                  <h1 class="text-success text-center">{{ total }}/110</h1>
+                  <h1 class="text-success text-center">{{ total }}/130</h1>
                 </div>
               </div>
             </div>
@@ -133,6 +133,16 @@
               
           </div>
         </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h2 class="card-title text-center">&nbsp;Faculty Research Publication</h2>
+              <canvas id="FRPChart" width="150" height="75"></canvas>
+              <h1 class="text-success text-center">{{ value57 }}/20</h1>
+              
+            </div>
+          </div>
+        </div>
           
         </section>
         
@@ -174,6 +184,29 @@
     data: {
       datasets: [{
         data: [FCPercentage, 100 - FCPercentage],
+        backgroundColor: ['#FF3D00', '#1F2428']
+      }]
+    },
+    options: {
+      cutoutPercentage: 80,
+      rotation: -90,
+      circumference: 180,
+      tooltips: {
+        enabled: false
+      },
+      legend: {
+        display: false
+      }
+    }
+  });
+  var FRPValue = {{ value57 }};
+  var FRPPercentage = (FRPValue / 20) * 100;
+
+  var FRPChart = new Chart(document.getElementById('FRPChart'), {
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [FRPPercentage, 100 - FRPPercentage],
         backgroundColor: ['#FF3D00', '#1F2428']
       }]
     },
@@ -292,6 +325,7 @@
   var FRValue = {{ value54 }};
   var FPValue = {{ value55 }};
   var interactionValue = {{ value56 }};
+  var FRPValue = {{ value57 }};
 
   var STPercentage = (STValue / 20) * 100;
   var FCPercentage = (FCValue / 20) * 100;
@@ -299,14 +333,15 @@
   var FRPercentage = (FRValue / 15) * 100;
   var FPPercentage = (FPValue / 15) * 100;
   var interactionPercentage = (interactionValue / 10) * 100;
+  var FRPPercentage = (FRPValue / 20) * 100;
 
   var combinedChart = new Chart(document.getElementById('combinedChart'), {
     type: 'doughnut',
     data: {
-      labels: ['Student Teacher', 'Faculty Cadre', 'Faculty Qualification', 'Faculty Retention', 'Faculty as Participant', 'Faculty Interaction'],
+      labels: ['Student Teacher', 'Faculty Cadre', 'Faculty Qualification', 'Faculty Retention', 'Faculty as Participant', 'Faculty Interaction','Faculty Research Publication'],
       datasets: [{
-        data: [STPercentage, FCPercentage, FQPercentage, FRPercentage, FPPercentage, interactionPercentage],
-        backgroundColor: ['#FF3D00', '#FFA500', '#FFFF00', '#008000', '#0000FF', '#800080']
+        data: [STPercentage, FCPercentage, FQPercentage, FRPercentage, FPPercentage, interactionPercentage, FRPPercentage],
+        backgroundColor: ['#FF3D00', '#FFA500', '#FFFF00', '#008000', '#0000FF', '#800080','#09d8f8']
       }]
     },
     options: {

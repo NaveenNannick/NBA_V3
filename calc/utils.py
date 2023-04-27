@@ -105,3 +105,12 @@ def IWO(i1,N):
         return float(value56)
     except ZeroDivisionError:
         pass
+
+def FRP(sd,N):
+    for i in range(len(sd)):
+        if sd[i] > 5:
+            sd[i] = 5
+    fg=sum(sd)
+    fg/=N
+    value57 = 4 *fg
+    return value57

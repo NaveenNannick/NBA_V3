@@ -80,3 +80,21 @@ class Profile(models.Model):
     class Meta:
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
+
+
+class Publication(models.Model):
+    LEVEL_INTERNATIONAL = 5
+    LEVEL_NATIONAL = 3 
+    LEVEL_STATE = 2
+    LEVEL_CHOICES=[
+        (LEVEL_INTERNATIONAL,_("International")),
+        (LEVEL_STATE,_("State")),
+        (LEVEL_NATIONAL,_("National")),
+    ]
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='publications')
+    authors = models.CharField(max_length=200)
+    journal_name = models.CharField(max_length=200)
+    level = models.PositiveSmallIntegerField(choices=LEVEL_CHOICES, null=True, blank=True, default=LEVEL_STATE)
+    publisher = models.CharField(max_length=200)
+    date_published = models.DateField()
+    file_upload = models.FileField(upload_to='uploads/')

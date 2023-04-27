@@ -6,10 +6,15 @@ from datetime import date
 from django.utils import timezone
 from django.contrib import messages
 from calc.models import CAY
-from .utils import STR, FCR, FQ, FR, FP, IWO
-from profiles.models import Profile
+from .utils import  STR, FCR, FQ, FR, FP, IWO, FRP
+from profiles.models import Profile, Publication
 from django.http import HttpResponse
 import csv
+from django.db.models import Sum
+
+qs1 = Publication.objects.values('user').annotate(total_level=Sum('level'))
+sd=[publication['total_level'] for publication in qs1]
+
 
 
 
@@ -52,9 +57,9 @@ cay_queryset0 = CAY.objects.filter(year__year=current_year1)
 cay_queryset1 = CAY.objects.filter(year__year=one_year_ago)
 cay_queryset2 = CAY.objects.filter(year__year=two_years_ago)
 
-cl0 = list(cay_queryset0.values_list('STR', 'FCR', 'FQ', 'FR', 'FP', 'IWO'))
-cl1 = list(cay_queryset1.values_list('STR', 'FCR', 'FQ', 'FR', 'FP', 'IWO'))
-cl2 = list(cay_queryset2.values_list('STR', 'FCR', 'FQ', 'FR', 'FP', 'IWO'))
+cl0 = list(cay_queryset0.values_list('STR', 'FCR', 'FQ', 'FR', 'FP', 'IWO','FRP'))
+cl1 = list(cay_queryset1.values_list('STR', 'FCR', 'FQ', 'FR', 'FP', 'IWO','FRP'))
+cl2 = list(cay_queryset2.values_list('STR', 'FCR', 'FQ', 'FR', 'FP', 'IWO','FRP'))
 
 
 
@@ -72,6 +77,7 @@ def dashboard(request):
         value54 = FR(exp,N)
         value55 = FP(ow,tw,N)
         value56 = IWO(i1,N)
+        value57 = FRP(sd,N)
         try:
             value52 = round(((value52+cl1[0][1]+cl2[0][1])/3),2)
         except IndexError:
@@ -92,16 +98,23 @@ def dashboard(request):
             value56 = round(((value56+cl1[0][5]+cl2[0][5])/3),2)
         except IndexError:
             value56 = 0
+        try:
+            value57 = round(((value57+cl1[0][6]+cl2[0][6])/3),2)
+        except IndexError:
+            value57 = 0
 
 
 
-        total =value52+value53+value54+value55+value56
+        total =value52+value53+value54+value55+value56+value57
+
         if value51 is None:
               value51 = 0
         else:
               value51 =round(((value51+cl1[0][0]+cl2[0][0])/3),2)
               total+=value51
+
         total = round(total,2)
+
         context ={
             'value51':value51,
             'value52':value52,
@@ -109,6 +122,7 @@ def dashboard(request):
             'value54':value54,
             'value55':value55,
             'value56':value56,
+            'value57':value57,
             'total':total,
         }
         return render(request,'dashboard.html',context)
@@ -133,8 +147,9 @@ def Avg(request):
         ca54 = FR(exp,N)
         ca55 = FP(ow,tw,N)
         ca56 = IWO(i1,N)
-        print("Values:", ca51, ca52, ca53, ca54, ca55, ca56)
-        
+        ca57 = FRP(sd,N)
+        print("Values:", ca51, ca52, ca53, ca54, ca55, ca56,ca57)
+        ctot = ca51 + ca52 +ca53+ca54+ca55+ca56+ca57
         cay_instance = CAY.objects.first()
         year_value = cay_instance.year.year if cay_instance else None
         if year_value and year_value == date.today().year:
@@ -145,10 +160,12 @@ def Avg(request):
             cay_instance.FR = ca54
             cay_instance.FP = ca55
             cay_instance.IWO = ca56
+            cay_instance.FRP = ca57
+            cay_instance.TOTAL = ctot
             cay_instance.save()
             messages.success(request, 'Data updated successfully.')
         else:
-            cay_instance = CAY(year=date.today(), STR=ca51, FCR=ca52[0], FQ=ca53[0], FR=ca54[0], FP=ca55[0], IWO=ca56[0])
+            cay_instance = CAY(year=date.today(), STR=ca51, FCR=ca52[0], FQ=ca53[0], FR=ca54[0], FP=ca55[0], IWO=ca56[0], FRP=ca57[0],TOTAL=ctot[0])
             cay_instance.save()
             messages.success(request, 'Data saved successfully.')
         
@@ -168,7 +185,7 @@ def export_data(request):
     response['Content-Disposition'] = 'attachment; filename="cay_data.csv"'
     writer = csv.writer(response)
 
-    writer.writerow(['Year', 'STR', 'FCR', 'FQ', 'FR', 'FP', 'IWO'])
+    writer.writerow(['Year', 'STR', 'FCR', 'FQ', 'FR', 'FP', 'IWO','FRP','TOTAL'])
 
     for cay in CAY.objects.all():
         writer.writerow([
@@ -179,6 +196,8 @@ def export_data(request):
             cay.FR,
             cay.FP,
             cay.IWO,
+            cay.FRP,
+            cay.TOTAL
         ])
 
     return response

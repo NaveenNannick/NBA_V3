@@ -164,15 +164,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--
-                                <div class="col-10 mb-4">
-                                    <div class="card border-light text-center p-0">
-                                        <h2 class="h5 my-4">Publications</h2>
-                                    </div>
-                            </div>
-                            -->
+                                
+                                
+                            
                         </div>
+                        
                     </div>
+                    
                         <div class =row>
                         <div class="col-12 col-xl-8">
                             <div class="card card-body bg-white border-light shadow-sm mb-4">
@@ -253,7 +251,7 @@
                                         <div class="form-group">
                                             <label for="location1">Location</label>
                                             <input name="location1" class="form-control" id="location1" type="text"
-                                                placeholder="Enter the location" value="{{ profile.location1|default:'' }}" required>
+                                                placeholder="Enter the location" value="{{ profile.location1|default:'' }}">
                                         </div>
                                     </div>
                                 </div>
@@ -294,7 +292,7 @@
                                     <div class="form-group">
                                         <label for="location2">Location</label>
                                         <input name="location2" class="form-control" id="location2" type="text"
-                                            placeholder="Enter the location" value="{{ profile.location2|default:'' }}" required>
+                                            placeholder="Enter the location" value="{{ profile.location2|default:'' }}" >
                                     </div>
                                 </div>
                             </div>
@@ -306,7 +304,7 @@
                                     <div class="col-md-6 mb-3">
                                         <div>
                                             <label for="interaction">Interaction with </label>
-                                            <select name="interaction" class="form-select mb-0" id="phd"
+                                            <select name="interaction" class="form-select mb-0" id="interaction"
                                                     aria-label="interaction select example">
                                                 <option selected>interaction</option>
                                                 {% for key, value in profile.INTERACTION_CHOICES %}
@@ -335,7 +333,7 @@
                                         
                                             <label for="iiPlace">Place</label>
                                             <input name="iiplace" class="form-control" id="iiplace" type="text"
-                                                placeholder="place" value="{{ profile.iiplace|default:'' }}" required>
+                                                placeholder="place" value="{{ profile.iiplace|default:'' }}">
                                         
                                     </div>
                                 </div>

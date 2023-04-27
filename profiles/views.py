@@ -1,11 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.decorators import method_decorator
 from django.views import View
 
-from profiles.forms import ProfileForm, form_validation_error
-from profiles.models import Profile
+from profiles.forms import ProfileForm, PublicationForm, form_validation_error
+from profiles.models import Profile, Publication
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -60,3 +61,53 @@ class ProfileView(View):
         else:
             messages.error(request, form_validation_error(form))
         return redirect('profile')
+
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+from django.urls import reverse_lazy
+from .models import Publication
+from .forms import PublicationForm
+
+
+@method_decorator(login_required, name='dispatch')
+class PublicationListView(ListView):
+    model = Publication
+    template_name = 'publication_list.html'
+    context_object_name = 'publications'
+
+
+@method_decorator(login_required, name='dispatch')
+class PublicationCreateView(CreateView):
+    model = Publication
+    form_class = PublicationForm
+    template_name = 'publication_form.html'
+    success_url = reverse_lazy('publication_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+@method_decorator(login_required, name='dispatch')
+class PublicationUpdateView(UpdateView):
+    model = Publication
+    form_class = PublicationForm
+    template_name = 'publication_form.html'
+    success_url = reverse_lazy('publication_list')
+
+
+@method_decorator(login_required, name='dispatch')
+class PublicationDeleteView(DeleteView):
+    model = Publication
+    template_name = 'publication_confirm_delete.html'
+    success_url = reverse_lazy('publication_list')
+
+
+@login_required
+def publication_detail(request, pk):
+    publication = get_object_or_404(Publication, pk=pk)
+    return render(request, 'publication_detail.html', {'publication': publication})
